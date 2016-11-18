@@ -1,7 +1,7 @@
 FROM alpine:latest
 MAINTAINER Firespring "info.dev@firespring.com"
 
-RUN apk add --update curl python unzip && \
+RUN apk add --update gettext curl python unzip && \
     rm -rf /var/cache/apk/*
 
 # install latest awscli and clean up

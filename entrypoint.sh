@@ -1,8 +1,8 @@
 #!/bin/sh
-echo "CALLED WITH [ $* ]"
+echo "Running sync command [ `echo "$*" | envsubst` ]"
+
 while [ true ]
 do
-  echo "RUNNING [ $* ]"
   sh -c "$*"
 
   if [ "${SYNC_PERIOD:-0}" -le 0 ]
