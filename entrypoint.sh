@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 while [ true ]
 do
   $*
@@ -9,4 +9,4 @@ do
   fi
 
   sleep $SYNC_PERIOD
-done;
+done
