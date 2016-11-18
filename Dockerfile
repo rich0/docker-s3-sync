@@ -10,12 +10,16 @@ RUN curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.
     && ./awscli-bundle/install -i /usr/local/ \
     && rm -rf awscli-bundle/* awscli-bundle.zip
 
+COPY entrypoint.sh /entrypoint.sh
+
 ENV AWS_DEFAULT_REGION us-west-2
 ENV AWS_ACCESS_KEY_ID ''
 ENV AWS_SECRET_ACCESS_KEY ''
-ENV AWS_ENDPOINT ''
-ENV SYNC_DIRECTORY '/directory'
-ENV SYNC_BUCKET '/bucket'
+ENV AWS_OPTIONS ''
+ENV AWS_SYNC_OPTIONS ''
+ENV SOURCE_LOCATION '/directory'
+ENV DEST_LOCATION '/bucket'
 ENV SYNC_PERIOD 600
 
-CMD while [ true ]; do aws $AWS_ENDPOINT s3 sync $SYNC_DIRECTORY s3://$SYNC_BUCKET/; sleep $SYNC_PERIOD; done;
+ENTRYPOINT /entrypoint.sh
+CMD aws $AWS_OPTIONS s3 sync $AWS_SYNC_OPTIONS $SOURCE_LOCATION $DEST_LOCATION
