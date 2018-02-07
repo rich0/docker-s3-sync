@@ -10,15 +10,15 @@ RUN curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.
     && ./awscli-bundle/install -i /usr/local/ \
     && rm -rf awscli-bundle/* awscli-bundle.zip
 
-ENV AWS_DEFAULT_REGION us-west-2
-ENV AWS_ACCESS_KEY_ID ''
-ENV AWS_SECRET_ACCESS_KEY ''
-ENV AWS_SESSION_TOKEN ''
-ENV AWS_OPTIONS ''
-ENV AWS_SYNC_OPTIONS ''
-ENV SOURCE_LOCATION '/directory'
-ENV DEST_LOCATION '/bucket'
-ENV SYNC_PERIOD 0
+ENV AWS_DEFAULT_REGION=us-west-2 \
+    AWS_ACCESS_KEY_ID='' \
+    AWS_SECRET_ACCESS_KEY='' \
+    AWS_SESSION_TOKEN='' \
+    AWS_OPTIONS='' \
+    AWS_SYNC_OPTIONS='' \
+    SOURCE_LOCATION='/directory' \
+    DEST_LOCATION='s3://bucket' \
+    SYNC_PERIOD=0
 
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
