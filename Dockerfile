@@ -1,10 +1,9 @@
-FROM ubuntu:latest
+FROM alpine:latest
 MAINTAINER Rich "rich@rich0.org"
 # Forked from Firespring's original dockerfile"
 
-RUN apt-get update
-RUN apt-get --yes upgrade
-RUN apt-get --yes install s3cmd
+RUN apk add --update s3cmd && \
+    rm -rf /var/cache/apk/*
 
 ENV AWS_DEFAULT_REGION=us-west-2 \
     AWS_ACCESS_KEY_ID='' \
