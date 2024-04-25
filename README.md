@@ -1,6 +1,8 @@
 # docker-s3-sync
 A lightweight container which synchronizes a directory or s3 bucket with a directory or s3 bucket at a specified interval.
 
+Forked from https://github.com/firespring/docker-s3-sync
+
 ### Configuration Options:
 ##### AWS_DEFAULT_REGION (default: us-west-2)
 The region of the destination bucket

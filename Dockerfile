@@ -1,14 +1,18 @@
-FROM alpine:latest
-MAINTAINER Firespring "info.dev@firespring.com"
+FROM ubuntu:latest
+MAINTAINER Rich "rich@rich0.org"
+# Forked from Firespring's original dockerfile"
 
-RUN apk add --update gettext curl python unzip && \
-    rm -rf /var/cache/apk/*
+RUN apt-get update
+RUN apt-get --yes upgrade
+RUN apt-get --yes install python3 curl unzip
 
 # install latest awscli and clean up
-RUN curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip" \
-    && unzip awscli-bundle.zip \
-    && ./awscli-bundle/install -i /usr/local/ \
-    && rm -rf awscli-bundle/* awscli-bundle.zip
+
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && \
+	unzip awscliv2.zip && \
+	./aws/install
+
+RUN aws --version
 
 ENV AWS_DEFAULT_REGION=us-west-2 \
     AWS_ACCESS_KEY_ID='' \
