@@ -3,6 +3,28 @@ A lightweight container which synchronizes a directory or s3 bucket with a direc
 
 Forked from https://github.com/firespring/docker-s3-sync
 
+## Image
+
+- Registry: `registry.rich0.org/public/docker-s3-sync` (Zot, public anonymous pull)
+- Tag: `latest`
+
+### Pull
+
+```bash
+docker pull registry.rich0.org/public/docker-s3-sync:latest
+```
+
+Public pulls do not require login.
+
+### Publish
+
+```bash
+docker login registry.rich0.org -u ci-push -p '<password>'
+./build-push.sh
+```
+
+Pins and publishes `registry.rich0.org/public/docker-s3-sync:latest`.
+
 ### Configuration Options:
 ##### AWS_DEFAULT_REGION (default: us-west-2)
 The region of the destination bucket
@@ -23,5 +45,3 @@ Either a directory or an s3 bucket (e.g. /foo or s3://foo)
 Either a directory or an s3 bucket (e.g. /bar or s3://bar)
 
 CMD s3cmd $S3CMD_OPTIONS sync $S3CMD_SYNC_OPTIONS $SOURCE_LOCATION $DEST_LOCATION
-
-

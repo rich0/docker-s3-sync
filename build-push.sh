@@ -1,6 +1,7 @@
 #!/bin/bash
-docker build . --pull --no-cache --tag ghcr.io/rich0/docker-s3-sync:latest && docker push ghcr.io/rich0/docker-s3-sync:latest
+set -euo pipefail
 
+IMAGE=registry.rich0.org/public/docker-s3-sync
 
-
-
+docker build . --pull --no-cache --tag "${IMAGE}:latest"
+docker push "${IMAGE}:latest"
